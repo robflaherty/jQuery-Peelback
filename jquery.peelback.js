@@ -25,13 +25,17 @@
           
       //If ad image is missing, stop the show            
       if (typeof(base.settings.adImage) !== 'string' || base.settings.adImage === ''){
-        console.log('ya need an ad image');              
+        if ( base.settings.debug === true) {
+          console.log('Ad image missing');
+        }
         return;
       }
       
       //If peel image is missing, stop the show            
       if (typeof(base.settings.peelImage) !== 'string' || base.settings.peelImage === ''){
-        console.log('ya need a peel image');              
+        if ( base.settings.debug === true) {
+        console.log('Peel effect image missing');              
+        }
         return;
       }
       
@@ -95,10 +99,15 @@
           }, 500);
             
           //If GA tracking enabled
-          if (base.settings.gaTrack === true){              
-            _gaq.push(['_trackEvent', 'Ad_Interaction', 'Peelback', base.settings.gaLabel]);
-          }
-            
+          if (base.settings.gaTrack === true) {    
+            if (typeof(_gaq) != 'undefined') {
+              _gaq.push(['_trackEvent', 'Ad_Interaction', 'Peelback', base.settings.gaLabel]);
+            } else {
+              if (base.settings.debug === true) {
+                console.log('Google Analytics _gaq object undefined');
+              }
+            }  
+         }   
         },
         
         //Mouseout
@@ -128,7 +137,8 @@
     clickURL : null,
     gaTrack  : false,
     gaLabel  : 'default',
-    autoAnimate: true
+    autoAnimate: true,
+    debug: false
   };
   
   $.fn.peelback = function(settings){
