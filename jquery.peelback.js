@@ -42,7 +42,10 @@
       //Assemble
       var peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '" target="_blank"><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>'),
         peelImage = peelHTML.find('img'),
-        peelMask = peelHTML.find('div');
+        peelMask = peelHTML.find('div'),
+        
+        IMG_WIDTH = IMG_HEIGHT = '58px',
+        MASK_WIDTH = MASK_HEIGHT = '55px';  
           
       $(peelImage).css({
         'width': '0',
@@ -69,17 +72,17 @@
       
       //Auto animate option      
       if (base.settings.autoAnimate === false) {
-        $(peelImage).css({'width' : '53px', 'height' : '53px'});
-        $(peelMask).css({'width' : '50px', 'height' : '50px'});
+        $(peelImage).css({'width' : IMG_WIDTH, 'height' : IMG_HEIGHT});
+        $(peelMask).css({'width' : MASK_WIDTH, 'height' : MASK_HEIGHT});
       } else {
         $(peelImage).delay(500).animate({
-          width: '53px', 
-          height: '53px'
+          width: IMG_WIDTH, 
+          height: IMG_HEIGHT
         }, 500);
           
         $(peelMask).delay(500).animate({
-          width: '50px', 
-          height: '50px'
+          width: MASK_WIDTH, 
+          height: MASK_HEIGHT
         }, 500); 
       }      
       
@@ -113,13 +116,13 @@
         //Mouseout
         function(){
           $(peelImage).stop().animate({
-            width: '53px', 
-            height: '53px'
+            width: IMG_WIDTH,
+            height: IMG_HEIGHT
           }, 400);
           
           $(peelMask).stop().animate({
-            width: '50px', 
-            height: '50px'
+            width: MASK_WIDTH,
+            height: MASK_HEIGHT
           }, 400);
         }
       
