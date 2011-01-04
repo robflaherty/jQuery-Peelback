@@ -14,7 +14,7 @@ Just call the `.peelback()` method on the `body` element and fill in the paramet
 
 ###Required
 **`adImage`** : path to the ad image (string)  
-**`peelImage`** : path to "peel-image.png" (string)
+**`peelImage`** : path to "peel-image.png" (string)  
 **`clickURL`** : click-through URL for the ad (string)
 
 Note: In the data URI version, the `peelImage` parameter does not exist because the image is contained within the script.
