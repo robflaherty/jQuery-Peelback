@@ -15,11 +15,11 @@ Just call the `.peelback()` method on the `body` element and fill in the paramet
 ###Required
 **`adImage`** : path to the ad image (string)  
 **`peelImage`** : path to "peel-image.png" (string)
+**`clickURL`** : click-through URL for the ad (string)
 
 Note: In the data URI version, the `peelImage` parameter does not exist because the image is contained within the script.
 
 ###Optional
-**`clickURL`** : click-through URL for the ad (string)      
 **`gaTrack`** : Send peelback events to Google Analytics? (boolean; default=false)   
 **`gaLabel`** : GA event label to use (string; default="default")    
 **`autoAnimate`** : animate peelback corner on pageload (boolean; default=true)      
