@@ -24,7 +24,7 @@
       base.settings = $.extend({},$.Peelback.defaultSettings, settings);
           
       //If ad image is missing, stop the show            
-      if (typeof(base.settings.adImage) !== 'string' || base.settings.adImage === ''){
+      if (typeof(base.settings.adImage) !== 'string' || base.settings.adImage === '') {
         if ( base.settings.debug === true) {
           console.log('Ad image missing');
         }
@@ -32,9 +32,17 @@
       }
       
       //If peel image is missing, stop the show            
-      if (typeof(base.settings.peelImage) !== 'string' || base.settings.peelImage === ''){
+      if (typeof(base.settings.peelImage) !== 'string' || base.settings.peelImage === '') {
         if ( base.settings.debug === true) {
         console.log('Peel effect image missing');              
+        }
+        return;
+      }
+      
+      //If click URL is missing, stop the show            
+      if (typeof(base.settings.clickURL) !== 'string' || base.settings.clickURL === '') {
+        if ( base.settings.debug === true) {
+        console.log('Click URL missing');              
         }
         return;
       }

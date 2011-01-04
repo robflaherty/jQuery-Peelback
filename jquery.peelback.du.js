@@ -31,6 +31,12 @@
         }
         return;
                
+      } else if (typeof(base.settings.clickURL) !== 'string' || base.settings.clickURL === '') {
+        //If click URL is missing, stop the show 
+        if ( base.settings.debug === true) {
+        console.log('Click URL missing');              
+        }
+        return;
       } else {
         //Check if browser supports data URIs
         var data = new Image();        
