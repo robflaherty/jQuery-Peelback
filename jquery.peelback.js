@@ -1,6 +1,6 @@
-/*
+/*!
  * jQuery Peelback
- * Copyright 2010, Rob Flaherty
+ * Copyright 2011, Rob Flaherty
  *
  * Dual licensed under the MIT and GPL licenses
  * http://www.opensource.org/licenses/mit-license.php
@@ -54,7 +54,7 @@
       smallSize = base.settings.smallSize + 'px';
       bigSize = base.settings.bigSize + 'px';
       smallMaskSize = (base.settings.smallSize - 3) + 'px';
-      bigMaskSize = (base.settings.bigSize - 20) + 'px';      
+      bigMaskSize = Math.floor((base.settings.bigSize * 0.96)) + 'px';
       
       //Assemble
       peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '" target="_blank"><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>');
