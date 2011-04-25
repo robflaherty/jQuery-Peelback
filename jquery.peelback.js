@@ -8,8 +8,8 @@
  *
  */
  
-(function($){
-  $.Peelback = function(el, settings){
+(function($) {
+  $.Peelback = function(el, settings) {
     
     //Caching
     var base = this;
@@ -18,11 +18,14 @@
     base.$el.data("Peelback", base);
     
     //Main stuff    
-    base.init = function(){
+    base.init = function() {
+      
+      //Vars
+      var peelHTML, peelImage, peelMask, smallSize, bigSize, smallMaskSize, bigMaskSize;
       
       //Defaults, meet Settings
-      base.settings = $.extend({},$.Peelback.defaultSettings, settings);
-          
+      base.settings = $.extend({},$.Peelback.defaultSettings, settings);      
+      
       //If ad image is missing, stop the show            
       if (typeof(base.settings.adImage) !== 'string' || base.settings.adImage === '') {
         if ( base.settings.debug === true) {
@@ -34,7 +37,7 @@
       //If peel image is missing, stop the show            
       if (typeof(base.settings.peelImage) !== 'string' || base.settings.peelImage === '') {
         if ( base.settings.debug === true) {
-        console.log('Peel effect image missing');              
+          console.log('Peel effect image missing');              
         }
         return;
       }
@@ -42,18 +45,21 @@
       //If click URL is missing, stop the show            
       if (typeof(base.settings.clickURL) !== 'string' || base.settings.clickURL === '') {
         if ( base.settings.debug === true) {
-        console.log('Click URL missing');              
+          console.log('Click URL missing');              
         }
         return;
       }
       
+      //Convenience vars and set mask size
+      smallSize = base.settings.smallSize + 'px';
+      bigSize = base.settings.bigSize + 'px';
+      smallMaskSize = (base.settings.smallSize - 3) + 'px';
+      bigMaskSize = (base.settings.bigSize - 20) + 'px';      
+      
       //Assemble
-      var peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '" target="_blank"><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>'),
-        peelImage = peelHTML.find('img'),
-        peelMask = peelHTML.find('div'),
-        
-        IMG_WIDTH = IMG_HEIGHT = '58px',
-        MASK_WIDTH = MASK_HEIGHT = '55px';  
+      peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '" target="_blank"><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>');
+      peelImage = peelHTML.find('img');
+      peelMask = peelHTML.find('div');
           
       $(peelImage).css({
         'width': '0',
@@ -80,17 +86,17 @@
       
       //Auto animate option      
       if (base.settings.autoAnimate === false) {
-        $(peelImage).css({'width' : IMG_WIDTH, 'height' : IMG_HEIGHT});
-        $(peelMask).css({'width' : MASK_WIDTH, 'height' : MASK_HEIGHT});
+        $(peelImage).css({ 'width' : smallSize, 'height' : smallSize });
+        $(peelMask).css({ 'width' : smallMaskSize, 'height' : smallMaskSize });
       } else {
         $(peelImage).delay(500).animate({
-          width: IMG_WIDTH, 
-          height: IMG_HEIGHT
+          width: smallSize, 
+          height: smallSize
         }, 500);
           
         $(peelMask).delay(500).animate({
-          width: MASK_WIDTH, 
-          height: MASK_HEIGHT
+          width: smallMaskSize, 
+          height: smallMaskSize
         }, 500); 
       }      
       
@@ -98,15 +104,15 @@
       peelHTML.hover(
         
         //Mouseover
-        function(){      
+        function() {      
           $(peelImage).stop().animate({
-            width: '510px', 
-            height: '510px'
+            width: bigSize, 
+            height: bigSize
           }, 500);
           
           $(peelMask).stop().animate({
-            width: '490px', 
-            height: '490px'
+            width: bigMaskSize, 
+            height: bigMaskSize
           }, 500);
             
           //If GA tracking enabled
@@ -122,15 +128,15 @@
         },
         
         //Mouseout
-        function(){
+        function() {
           $(peelImage).stop().animate({
-            width: IMG_WIDTH,
-            height: IMG_HEIGHT
+            width: smallSize,
+            height: smallSize
           }, 400);
           
           $(peelMask).stop().animate({
-            width: MASK_WIDTH,
-            height: MASK_HEIGHT
+            width: smallMaskSize,
+            height: smallMaskSize
           }, 400);
         }
       
@@ -143,17 +149,19 @@
   };
     
   $.Peelback.defaultSettings = {
-    adImage  : null,
-    peelImage : null,
-    clickURL : null,
-    gaTrack  : false,
-    gaLabel  : 'default',
-    autoAnimate: true,
-    debug: false
+    adImage     : null,
+    peelImage   : null,
+    clickURL    : null,
+    smallSize   : 58,
+    bigSize     : 510,
+    gaTrack     : false,
+    gaLabel     : 'default',
+    autoAnimate : true,
+    debug       : false
   };
   
-  $.fn.peelback = function(settings){
-    return this.each(function(){
+  $.fn.peelback = function(settings) {
+    return this.each(function() {
       (new $.Peelback(this, settings));
     });
   };
