@@ -64,7 +64,7 @@
       $(peelImage).css({
         'width': '0',
         'height': '0',
-        'z-index': '99',
+        'z-index': '9001',
         'position': 'absolute',
         'right': '0',
         'top': '0',
@@ -78,6 +78,7 @@
         'position': 'absolute',
         'right': '0',
         'top': '0',
+        'z-index': '9000',
         'background': 'url(' + base.settings.adImage + ') no-repeat right top'
       });
       
