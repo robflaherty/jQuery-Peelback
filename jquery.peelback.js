@@ -57,7 +57,7 @@
       bigMaskSize = Math.floor((base.settings.bigSize * 0.96)) + 'px';
       
       //Assemble
-      peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '" target="_blank"><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>');
+      peelHTML = $('<div id="peelback"><a href="' + base.settings.clickURL + '"' + (base.settings.openInNewWindow ? ' target="_blank"' : '') + '><img src="' + base.settings.peelImage +'" alt="" border="0" /></a><div></div></div>');
       peelImage = peelHTML.find('img');
       peelMask = peelHTML.find('div');
           
@@ -150,15 +150,16 @@
   };
     
   $.Peelback.defaultSettings = {
-    adImage     : null,
-    peelImage   : null,
-    clickURL    : null,
-    smallSize   : 58,
-    bigSize     : 510,
-    gaTrack     : false,
-    gaLabel     : 'default',
-    autoAnimate : true,
-    debug       : false
+    adImage         : null,
+    peelImage       : null,
+    clickURL        : null,
+    smallSize       : 58,
+    bigSize         : 510,
+    gaTrack         : false,
+    gaLabel         : 'default',
+    autoAnimate     : true,
+    debug           : false,
+    openInNewWindow : true
   };
   
   $.fn.peelback = function(settings) {
