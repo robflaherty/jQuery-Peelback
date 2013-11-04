@@ -23,18 +23,20 @@ Just call the `.peelback()` method on the `body` element and fill in the paramet
 **`gaLabel`** : GA event label to use (string; default="default")  
 **`autoAnimate`** : animate peelback corner on pageload (boolean; default=true)   
 **`debug`** : display errors in console (boolean; default=false) 
+**`openInNewWindow`** : specifies whether link should be opened in a new window (boolean; default=true) 
     
     $(function(){
       $('body').peelback({
-        adImage     : 'peel-ad.png',
-        peelImage   : '../assets/peel-image.png',
-        clickURL    : 'http://www.thebestdinosaur.com/',
-        smallSize   : 50,
-        bigSize     : 500,
-        gaTrack     : true,
-        gaLabel     : '#1 Stegosaurus',
-        autoAnimate : true,
-        debug       : false 
+        adImage         : 'peel-ad.png',
+        peelImage       : '../assets/peel-image.png',
+        clickURL        : 'http://www.thebestdinosaur.com/',
+        smallSize       : 50,
+        bigSize         : 500,
+        gaTrack         : true,
+        gaLabel         : '#1 Stegosaurus',
+        autoAnimate     : true,
+        debug           : false 
+        openInNewWindow : false 
       });
     });
     
